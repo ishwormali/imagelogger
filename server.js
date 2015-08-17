@@ -7,12 +7,15 @@ router=express.Router(),
 compress = require('compression'),
     methodOverride = require('method-override');
 
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', server_port || 3000);
 app.use(compress());
 app.use(methodOverride());
 console.log('-------about to listen-------------------------');
-app.listen(app.get('port'),function(){
+
+app.listen(app.get('port'),server_ip_address,function(){
 	console.log('server listening in port '+app.get('port'));
 });
 
