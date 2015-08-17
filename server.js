@@ -1,3 +1,4 @@
+console.log('-------starting-------------------------');
 var express=require('express'),
 http=require('http'),
 app=express(),
@@ -10,7 +11,7 @@ compress = require('compression'),
 app.set('port', process.env.PORT || 3000);
 app.use(compress());
 app.use(methodOverride());
-
+console.log('-------about to listen-------------------------');
 app.listen(app.get('port'),function(){
 	console.log('server listening in port '+app.get('port'));
 });
@@ -29,3 +30,5 @@ router.get('/images/:imageFileName',function(req,res){
 });
 
 app.use('/',router);
+
+console.log('-------done-------------------------');
